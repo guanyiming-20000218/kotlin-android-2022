@@ -9,3 +9,11 @@
 1.practice和homework均有视频演示
 2.practice1和practice2以及homework命名方式与截图相对应
 3.代码可下载查看
+
+
+
+# lab04
+
+1.practice2和homework均有视频演示
+2.practice1和practice2以及homework命名方式与截图相对应
+3.代码可下载查看Diceroller和Dessert-starter文件
