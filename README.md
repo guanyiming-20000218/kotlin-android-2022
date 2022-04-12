@@ -31,3 +31,11 @@
 2.关键代码截取了GameFragment.kt和其xml布局文件以及GameViewModel.kt文件的代码
 
 3.代码可下载查看android-basics-kotlin-unscramble-app-starter文件
+
+
+
+# lab06
+
+1.homework有视频演示和截图演示
+
+2.代码可下载查看TrackMySleepQualityStates-Starter1文件
