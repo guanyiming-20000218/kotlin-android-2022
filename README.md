@@ -57,3 +57,13 @@
 2.homework有视频演示(录屏演示),截图演示(screen)和代码截图(code)
 
 3.代码可下载查看[MarsRealEstateGrid](https://github.com/guanyiming-20000218/kotlin-android-2022/tree/main/lab08/MarsRealEstateGrid)文件
+
+
+
+# lab08
+
+1.徽章为lesson12.png
+
+2.homework有视频演示(录屏演示),截图演示(screen)和代码截图(code)
+
+3.代码可下载查看文件
