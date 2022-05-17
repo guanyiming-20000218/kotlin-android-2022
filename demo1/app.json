@@ -1,7 +1,8 @@
 {
     "pages": [
         "miniprogram/pages/index/index",
-        "miniprogram/pages/my/my"
+        "miniprogram/pages/my/my",
+        "miniprogram/pages/product_detail/product_detail"
         
     ],
     "tabBar": {

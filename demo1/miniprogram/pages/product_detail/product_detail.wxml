@@ -1,0 +1,64 @@
+<!--miniprogram/pages/product_detail/product_detail.wxml-->
+<!-- 轮播图 -->
+<swiper class="pro_case" autoplay="true" indicator-dots="true" circular="true">
+  <block wx:for="{{product.img}}" wx:key="index">
+    <swiper-item>
+      <image src="{{item}}" class="pro_img"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 商品信息区 -->
+<view class="lay_col_cen pad_20">
+    <!-- 商品信息区 -->
+    <view class="lay_col_cen pad_20 pro_msg">
+        <view class="lay_row_sta">
+            <text>{{product.name}}</text>
+        </view>
+        <view class="lay_row_sta">
+            <text style="color: red;">$:{{product.price}}</text>
+            <text style="color: #888;font-size: 25rpx;margin-left: 15rpx;text-decoration: line-through;">{{product.h_price}}</text>
+        </view>
+        <view class="lay_row_end">
+            <text style="font-size:20rpx; color: #888;">销量:{{product.sales_volume}}</text>
+        </view>
+    </view>
+
+    <!-- 选择信息 -->
+    <view class="lay_col_cen pad_20 select_case">
+        <view class="lay_row_sta">
+            <text style="font-size: 25rpx;">规格</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta pro_specs">
+            <block wx:for="{{product.specs}}" wx:key="index">
+                <van-button type="primary" size="mini" style="margin: 10rpx;">{{item}}</van-button>
+            </block>
+        </view>
+
+        <view class="lay_row_sta" style="margin-top: 20rpx;">
+            <text style="font-size: 25rpx;">数量</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        
+        <view class="lay_row_spa">
+            <text>选择的数量：{{select_num}}</text>
+            <van-stepper value="{{ select_num }}" bind:change="select_num" style="margin-left: 200rpx;"/>
+        </view>
+    </view>
+
+    <!-- 详情展示 -->
+    <view class="lay_col_cen pad_20 select_case">
+        <block wx:for="{{product.img_detail}}">
+            <image src="{{item}}" class="pro_img_detail" mode="widthFix"></image>
+        </block>
+    </view>
+</view>
+<!-- 提交栏 -->
+<van-goods-action>
+  <van-goods-action-icon icon="chat-o" text="客服" dot open-type="contact"/>
+  <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
+  <van-goods-action-icon icon="shop-o" text="店铺" />
+  <van-goods-action-button text="加入购物车" type="warning" />
+  <van-goods-action-button text="立即购买" />
+</van-goods-action>

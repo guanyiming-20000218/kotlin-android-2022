@@ -1,0 +1,25 @@
+{
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "商品详情",
+                    "pathName": "miniprogram/pages/product_detail/product_detail",
+                    "query": "id=058dfefe62834a9003f93ff240615756",
+                    "scene": null,
+                    "launchMode": "default"
+                }
+            ]
+        }
+    }
+}

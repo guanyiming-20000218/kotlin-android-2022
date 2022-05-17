@@ -28,7 +28,6 @@
 
         <view class="fun_a">
             <view class="fun_left">
-            
             </view>
             <view class="fun_right">
                 <view class="fun_right_a"></view>
@@ -38,26 +37,15 @@
     </view>
 
 <!-- 商品列表 -->
-<view class="gird">
-    <van-grid column-num="3" border="{{ false }}">
-    <van-grid-item use-slot wx:for="{{ pro_list }}" wx:key="index">
-    <image
-      style="width: 100%; height: 90px;"
-      src="{{item.img[index]}}"
-    />
-    </van-grid-item>
-    </van-grid>
-
-
-</view>
 
     <view class="pro">
         <van-divider contentPosition="center"
         style="width: 96%;">商品</van-divider>
         <view class="pro_all">
             <block wx:for="{{pro_list}}" wx:key="index">
+              <navigator class="pro_detail" url="../product_detail/product_detail?id={{item._id}}">
                 <view class="pro_detail">
-                    <image src="{{item.img[0]}}"></image>
+                    <image src="{{item.img[index]}}"></image>
                     <view>
                         <text>{{item.name}}</text>
                     </view>
@@ -68,13 +56,8 @@
                         </view>
                         <van-icon name="cart-circle-o" size="50rpx" color="#FF502F"/>
                     </view>
-
-                    <view>
-                        <view>
-                            
-                        </view>
-                    </view>
                 </view>
+              </navigator>
             </block>
         </view>
     </view>
