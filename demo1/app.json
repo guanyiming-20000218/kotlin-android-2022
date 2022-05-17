@@ -1,0 +1,36 @@
+{
+    "pages": [
+        "miniprogram/pages/index/index",
+        "miniprogram/pages/my/my"
+        
+    ],
+    "tabBar": {
+        "selectedColor" : "#FF502F",
+        "colo" : "#888",
+        "borderStyle": "white",
+
+        "list": [
+          {
+            "pagePath": "miniprogram/pages/index/index",
+            "text": "首页",
+            "iconPath": "/miniprogram/images/首页.png",
+            "selectedIconPath": "/miniprogram/images/首页s.png"
+
+            
+          },
+          {
+            "pagePath": "miniprogram/pages/my/my",
+            "text": "我的",
+            "iconPath": "/miniprogram/images/我的.png",
+            "selectedIconPath": "/miniprogram/images/我的s.png"
+          }
+        ]
+      },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#FF502F",
+        "navigationBarTitleText": "农销平台",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json"
+}

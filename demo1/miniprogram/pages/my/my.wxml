@@ -1,0 +1,15 @@
+<!--miniprogram/pages/my/my.wxml-->
+<text>miniprogram/pages/my/my.wxml</text>
+<view>
+    <van-popup show="{{ show }}" 
+    position="bottom"
+    round
+    closeable
+    custom-style="height: 50%;"
+    bind:close="onClose"></van-popup>  
+
+    <view>
+    </view>
+
+    <view></view>
+</view>
