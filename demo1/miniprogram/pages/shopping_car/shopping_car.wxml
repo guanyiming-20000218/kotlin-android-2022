@@ -1,0 +1,33 @@
+<!--miniprogram/pages/shopping_car/shopping_car.wxml-->
+
+<view class="lay_col_sta pad_20">
+    <van-checkbox-group value="{{ result }}" bind:change="select_product" style="width: 100%;">
+        <block wx:for="{{product_list}}" wx:key="index">
+            <view class="lay_row_spa">
+                <van-checkbox name="{{index}}">
+                </van-checkbox>
+                <view class="lay_row_spa pad_20 product_case" style="margin-left: 20rpx;" data-id="{{item._id}}" bindlongpress="delete_product">
+                    <view class="lay_row_sta" style="width: 60%;">
+                        <image src="{{item.product_img}}" class="product_img"></image>
+                        <view class="lay_col_spa" style="width: 50%;height: 100rpx;font-size: 25rpx;">
+                            <text>{{item.product_name}}</text>
+                            <text>{{item.product_specs}}</text>
+                            <text style="color: red;">￥:{{item.product_price}}</text>
+                        </view>
+                    </view>
+                    <van-stepper value="{{ item.product_name }}" data-index="{{index}}" bind:change="select_product_num"/>
+                </view>            
+            </view>
+        </block>
+    </van-checkbox-group>
+</view>
+
+<van-submit-bar
+  price="{{ all_price }}"
+  button-text="提交订单"
+  bind:submit="onClickButton"
+  tip="{{ true }}"
+>
+  <van-tag type="primary" wx:if="{{!is_all}}" data-name="全选" bindtap="select_all" style="font-size: 30rpx;">全选</van-tag>
+  <van-tag type="primary" wx:else data-name="取消全选" bindtap="select_all" style="font-size: 30rpx;">取消全选</van-tag>
+</van-submit-bar>

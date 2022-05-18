@@ -7,13 +7,68 @@ Page({
      */
     data: {
         product:{},
-        select_num:1
+        select_num:1,
+        select_specs:""
     },
     select_num(e){
         let that = this
         that.setData({
             select_num:e.detail
         })
+    },
+    // 选择规格
+    select_specs(e){
+        let that = this
+        let specs = e.currentTarget.dataset.specs
+        that.setData({
+            select_specs:specs
+        })
+    },
+    // 添加到购物车
+    add_shopping_car(){
+        let that = this
+        let product = that.data.product
+        if(that.data.select_specs==''){
+            wx.showToast({
+              title: '请选择规格',
+              icon:"none"
+            })
+        }else{
+            wx.showLoading({
+                title: '添加中',
+            })
+            db.collection('shopping_car').where({
+                product_id:product._id,
+                product_specs:that.data.select_specs,
+            }).get().then(res=>{
+                if(res.data.length>0){
+                    wx.hideLoading()
+                    wx.showToast({
+                      title: '购物车已经有了',
+                      icon:"none"
+                    })
+                }else{
+                    db.collection('shopping_car').add({
+                        data:{
+                            product_id:product._id,
+                            product_img:product.img[0],
+                            product_name:product.name,
+                            product_price:product.price,
+                            product_specs:that.data.select_specs,
+                            product_num:that.data.select_num,
+                            time:db.serverDate()
+                        }
+                    }).then(res=>{
+                        wx.hideLoading()
+                        wx.showToast({
+                            title: '添加成功',
+                        })
+                        console.log('添加到购物车',res)
+                    })
+                }
+            })
+        }
+
     },
     get_product(id){
         let that = this

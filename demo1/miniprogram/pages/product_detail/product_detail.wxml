@@ -32,7 +32,8 @@
         <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
         <view class="lay_row_sta pro_specs">
             <block wx:for="{{product.specs}}" wx:key="index">
-                <van-button type="primary" size="mini" style="margin: 10rpx;">{{item}}</van-button>
+                <van-button wx:if="{{item != select_specs}}"  type="primary" size="mini" style="margin: 10rpx;" bind:click="select_specs" data-specs="{{item}}">{{item}}</van-button>
+                <van-button wx:else type="danger" size="mini" style="margin: 10rpx;" bind:click="select_specs" data-specs="{{item}}">{{item}}</van-button>
             </block>
         </view>
 
@@ -57,8 +58,8 @@
 <!-- 提交栏 -->
 <van-goods-action>
   <van-goods-action-icon icon="chat-o" text="客服" dot open-type="contact"/>
-  <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
+  <van-goods-action-icon icon="cart-o" text="购物车" link-type="redirectTo" url="../shopping_car/shopping_car" />
   <van-goods-action-icon icon="shop-o" text="店铺" />
-  <van-goods-action-button text="加入购物车" type="warning" />
-  <van-goods-action-button text="立即购买" />
+  <van-goods-action-button text="加入购物车" type="warning" bind:click="add_shopping_car"/>
+  <van-goods-action-button text="立即购买" bind:click="add_order"/>
 </van-goods-action>

@@ -2,7 +2,8 @@
     "pages": [
         "miniprogram/pages/index/index",
         "miniprogram/pages/my/my",
-        "miniprogram/pages/product_detail/product_detail"
+        "miniprogram/pages/product_detail/product_detail",
+        "miniprogram/pages/shopping_car/shopping_car"
         
     ],
     "tabBar": {
@@ -16,8 +17,12 @@
             "text": "首页",
             "iconPath": "/miniprogram/images/首页.png",
             "selectedIconPath": "/miniprogram/images/首页s.png"
-
-            
+          },
+          {
+            "pagePath": "miniprogram/pages/shopping_car/shopping_car",
+            "text": "购物车",
+            "iconPath": "/miniprogram/images/购物车.png",
+            "selectedIconPath": "/miniprogram/images/购物车s.png"
           },
           {
             "pagePath": "miniprogram/pages/my/my",
@@ -25,6 +30,7 @@
             "iconPath": "/miniprogram/images/我的.png",
             "selectedIconPath": "/miniprogram/images/我的s.png"
           }
+
         ]
       },
     "window": {

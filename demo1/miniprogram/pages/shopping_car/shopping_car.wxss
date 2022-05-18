@@ -1,0 +1,12 @@
+/* miniprogram/pages/shopping_car/shopping_car.wxss */
+.product_case{
+    width: 100%;
+    background-color: #fdfbfb;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+}
+.product_img{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+}

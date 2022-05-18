@@ -16,6 +16,13 @@
                     "name": "商品详情",
                     "pathName": "miniprogram/pages/product_detail/product_detail",
                     "query": "id=058dfefe62834a9003f93ff240615756",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "购物车",
+                    "pathName": "miniprogram/pages/shopping_car/shopping_car",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }
