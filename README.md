@@ -26,7 +26,7 @@
 
 ### 使用
 
-- 源码运行：下载demo1，打开微信小程序导入，将appid改为您的小程序id，编译运行
+- 源码运行：下载[demo1](https://github.com/guanyiming-20000218/kotlin-android-2022/tree/main/demo1)，打开微信小程序导入，将appid改为您的小程序id，编译运行
 - appid查看：appid为 wxdbff1a7251f1f895
 - 手机端查看：扫描二维码查看
 
