@@ -10,6 +10,7 @@ Page({
         select_num:1,
         select_specs:""
     },
+    //选择数量
     select_num(e){
         let that = this
         that.setData({
@@ -88,6 +89,17 @@ Page({
               icon:"error"
             })
             console.log('获取商品详情失败',err)
+        })
+    },
+
+    // 跳转至购物车
+    to_shopping_car(){
+        wx.showLoading({
+          title: '正在跳转至购物车',
+        }),
+
+        wx.switchTab({
+          url: '../shopping_car/shopping_car',
         })
     },
     /**
