@@ -1,15 +1,44 @@
 <!--miniprogram/pages/my/my.wxml-->
-<text>miniprogram/pages/my/my.wxml</text>
-<view>
-    <van-popup show="{{ show }}" 
+<!-- 个人信息 -->
+<view class="lay_row_spa pad_20 user_msg">
+    <view class="lay_row_sta" style="width: 50%;">
+        <image src="{{user.userInfo.avatarUrl}}" class="avg"></image>
+        <text style="color: white;">{{user.userInfo.nickName}}</text>
+    </view>
+    <text style="font-size: 25rpx;color: white;">修改</text>
+
+    <!-- <van-popup show="{{ show }}" 
     position="bottom"
     round
     closeable
     custom-style="height: 50%;"
-    bind:close="onClose"></van-popup>  
+    bind:close="onClose"></van-popup>   -->
+</view>
 
-    <view>
+<!-- 订单 -->
+<view  class="lay_row_cen pad_20">
+    <view class="lay_col_cen pad_20 order_case">
+        <view class="lay_row_sta">
+            <text style="font-size: 25rpx;">我的订单</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_spa">
+            <view class="lay_col_spa" style="height: 120rpx;">
+                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/待发货.png" class="order_icon"></image>
+                <text>待发货</text>
+            </view>
+            <view class="lay_col_spa" style="height: 120rpx;">
+                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/运输中.png" class="order_icon"></image>
+                <text>运输中</text>
+            </view>
+            <view class="lay_col_spa" style="height: 120rpx;">
+                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/已收货.png" class="order_icon"></image>
+                <text>已收货</text>
+            </view>
+            <view class="lay_col_spa" style="height: 120rpx;">
+                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/售后.png" class="order_icon"></image>
+                <text>售后</text>
+            </view>
+        </view>
     </view>
-
-    <view></view>
 </view>

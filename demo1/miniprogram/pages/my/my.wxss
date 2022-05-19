@@ -1,1 +1,23 @@
 /* miniprogram/pages/my/my.wxss */
+.user_msg{
+    height: 250rpx;
+    background-color: #FF502F;
+}
+.avg{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 100rpx;
+    margin-right: 20rpx;
+}
+
+.order_case{
+    background-color: white;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+    font-size: 25rpx;
+    color: #888888;
+}
+.order_icon{
+    width: 80rpx;
+    height: 80rpx;
+}

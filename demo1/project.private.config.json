@@ -23,6 +23,13 @@
                     "name": "购物车",
                     "pathName": "miniprogram/pages/shopping_car/shopping_car",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "我的",
+                    "pathName": "miniprogram/pages/my/my",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }
