@@ -41,9 +41,9 @@
 
 ### 演示
 
-视频演示：[迭代1演示.mp4](https://github.com/guanyiming-20000218/kotlin-android-2022/blob/main/迭代1演示.mp4)
+视频演示：[迭代2演示.mp4](https://github.com/guanyiming-20000218/kotlin-android-2022/blob/main/迭代2演示.mp4)
 
-二维码查看：[迭代1二维码.jpg](https://github.com/guanyiming-20000218/kotlin-android-2022/blob/main/迭代1二维码.jpg)
+二维码查看：[迭代2二维码.jpg](https://github.com/guanyiming-20000218/kotlin-android-2022/blob/main/迭代2二维码.jpg)
 
 若二维码失效，请联系开发者，邮箱为2818067461@qq.com
 
