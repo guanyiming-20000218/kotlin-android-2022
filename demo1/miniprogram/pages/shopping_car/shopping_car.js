@@ -11,6 +11,35 @@ Page({
         result:[],
         is_all:false
     },
+    // 提交订单
+    submit_order(){
+        let that = this
+        if(that.data.result.length != 0){
+            wx.showLoading({
+              title: '提交中',
+            })
+            let goods = []
+            for(let i=0;i < that.data.result.length;i++){
+                goods.push(that.data.product_list[that.data.result[i]*i])
+                if(i+1==that.data.result.length){
+                    wx.hideLoading()
+                    wx.setStorage({
+                        key:"goods",
+                        data:goods
+                    })
+                    wx.navigateTo({
+                        url: '../add_order/add_order',
+                    })
+
+                }
+            }
+        }else{
+            wx.showToast({
+              title: '请选择商品',
+              icon:"none"
+            })
+        }
+    },
     // 删除商品
     delete_product(e){
         let that = this

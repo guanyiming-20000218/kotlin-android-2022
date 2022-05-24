@@ -21,3 +21,22 @@
     width: 80rpx;
     height: 80rpx;
 }
+.fun_case{
+    background-color: #fff;
+    margin-top: 20rpx;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+}
+.fun_row{
+    height: 150rpx;
+}
+.fun_item{
+    width: 33%;
+    font-size: 25rpx;
+    color: #888888;
+}
+.fun_img{
+    width: 50rpx;
+    height: 50rpx;
+    margin-bottom: 12rpx;
+}

@@ -16,7 +16,7 @@
 </view>
 
 <!-- 订单 -->
-<view  class="lay_row_cen pad_20">
+<view  class="lay_col_cen pad_20">
     <view class="lay_col_cen pad_20 order_case">
         <view class="lay_row_sta">
             <text style="font-size: 25rpx;">我的订单</text>
@@ -39,6 +39,51 @@
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/售后.png" class="order_icon"></image>
                 <text>售后</text>
             </view>
+        </view>
+    </view>
+</view>
+<!-- 功能 -->
+<view class="lay_col_cen pad_20 fun_case">
+    <view class="lay_row_spa fun_row">
+        <view class="lay_col_cen fun_item" bindtap="my_address">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+    </view>
+    <view class="lay_row_spa fun_row">
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+    </view>
+    <view class="lay_row_spa fun_row">
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
+        </view>
+        <view class="lay_col_cen fun_item">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
+            <text>我的地址</text>
         </view>
     </view>
 </view>

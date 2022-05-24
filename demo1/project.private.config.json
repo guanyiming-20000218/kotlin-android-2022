@@ -30,6 +30,13 @@
                     "name": "我的",
                     "pathName": "miniprogram/pages/my/my",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "下单",
+                    "pathName": "miniprogram/pages/add_order/add_order",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }

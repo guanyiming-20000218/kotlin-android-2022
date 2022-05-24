@@ -6,9 +6,18 @@ Page({
      * 页面的初始数据
      */
     data: {
-        show : true
+        show : true,
+        user : {}
     },
-
+    //我的地址
+    my_address(){
+        let that = this
+        wx.chooseAddress({
+            success (res) {
+              console.log('我的地址',res)
+            }
+          })
+    },
     // 注册
     register(e){
         let that = this

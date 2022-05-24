@@ -1,0 +1,52 @@
+<!--miniprogram/pages/add_order/add_order.wxml-->
+<view class="lay_col_spa pad_20">
+    <!-- 我的地址 -->
+    <view class="lay_col_cen pad_20 address_case" bindtap="get_address">
+        <van-icon name="plus" style="color: #888888;" size="50rpx" wx:if="{{!address.errMsg}}"/>
+        <text style="color: #888888; margin-top: 20rpx;" wx:if="{{!address.errMsg}}">请选择地址</text>
+        <view class="lay_row_spa" style="font-size: 25rpx;" wx:if="{{address.errMsg=='chooseAddress:ok'}}">
+            <text>联系人:{{address.userName}}</text>
+            <text>联系电话:{{address.telNumber}}</text>
+        </view>
+        <view class="lay_row_sta" style="font-size: 25rpx;" wx:if="{{address.errMsg=='chooseAddress:ok'}}">
+            <text style="color: #888888;">地址:{{address.provinceName}}{{address.cityName}}{{address.countName}}{{address.detailInfo}}</text>
+        </view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="lay_col_cen pad_20 address_case">
+        <view class="lay_row_sta">
+            <text>商品信息</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx" />
+        <block wx:for="{{goods}}" wx:key="index">
+            <view class="lay_row_spa">
+                <view class="lay_row_sta" style="width: 60%;">
+                    <image src="{{item.product_img}}" class="goods_img"></image>
+                    <view class="lay_col_spa" style="width: 50%;height: 120rpx;">
+                        <text>{{item.product_name}}</text>
+                        <text style="color: #888888;">{{item.product_specs}}</text>
+                        <text style="color: red;">{{item.product_price}}</text>
+                    </view>
+                </view>
+                <van-stepper value="{{ item.product_name }}" data-index="{{index}}" bind:change="select_product_num"/>
+            </view>
+            <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx" wx:if="{{index+1 < goods.length}}"/>
+
+        </block>
+    </view>
+
+    <!-- 备注 -->
+    <view class="lay_col_cen pad_20 address_case">
+        <view class="lay_row_sta">
+            <text>备注：</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx"/>
+        <textarea name="" id="" cols="30" rows="10" style="width: 100%;height: 150rpx;" bindinput="input_remarks"></textarea>
+    </view>
+
+    <!-- 提交 -->
+    <view class="lay_col_cen">
+        <van-button type="primary" size="large" style="width: 100%;" color="salmon">下单:(${{all_price}})</van-button>
+    </view>
+</view>
