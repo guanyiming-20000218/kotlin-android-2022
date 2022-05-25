@@ -39,6 +39,13 @@
                     "query": "",
                     "scene": null,
                     "launchMode": "default"
+                },
+                {
+                    "name": "订单",
+                    "pathName": "miniprogram/pages/order/order",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

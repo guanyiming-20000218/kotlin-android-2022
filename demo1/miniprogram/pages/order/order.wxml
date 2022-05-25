@@ -1,0 +1,45 @@
+<!--miniprogram/pages/order/order.wxml-->
+<!-- 头部 -->
+<view class="lay_row_spa head">
+    <view class="lay_row_cen {{title=='已付款'?'select_tile':''}}" data-name="已付款" bindtap="select_title">
+        <text style="margin-left: 80rpx;">已付款</text>
+    </view>
+    <view class="lay_row_cen {{title=='运输中'?'select_tile':''}}" data-name="运输中" bindtap="select_title">
+        <text style="margin-left: 80rpx;">运输中</text>
+    </view>
+    <view class="lay_row_cen {{title=='已完成'?'select_tile':''}}" data-name="已完成" bindtap="select_title">
+        <text style="margin-left: 80rpx;">已完成</text>
+    </view>
+</view>
+
+<!-- 内容 -->
+<scroll-view style="width: 100%;height: 94vh;" scroll-y="true">
+    <view class="lay_col_sta pad_20">
+        <block wx:for="{{order}}" wx:key="index">
+            <view class="lay_col_cen pad_20 order">
+                <view class="lay_row_spa">
+                    <text style="color: #888888;">{{item._id}}</text>
+                    <text style="margin-left: 130rpx;">{{item.type}}</text>
+                </view>
+                <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                <view class="lay_col_cen">
+                    <block wx:for="{{item.goods}}" wx:for-item="goods" wx:key="index">
+                        <view class="lay_row_spa" style="margin-bottom: 10rpx;">
+                            <image src="{{goods.product_img}}" class="goods_img"></image>
+                            <view class="lay_col_cen" style="height: 120rpx;width: 40%;align-items: flex-start;margin-left: 180rpx;">
+                                <text style="padding-top: 20rpx;">{{goods.product_name}}</text>
+                                <text>{{goods.product_specs}}×{{goods.product_num}}</text>
+                            </view>
+                            <text style="color: red;">${{goods.product_price}}</text>
+                        </view>
+                    </block>
+                </view>
+                <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                <view class="lay_row_sta">
+                    <text style="color: #888888;">{{item.time}}</text>
+                    <text style="color: red;margin-left: 240rpx;">总金额：{{item.all_price}}元</text>
+                </view>
+            </view>
+        </block>
+    </view>
+</scroll-view>

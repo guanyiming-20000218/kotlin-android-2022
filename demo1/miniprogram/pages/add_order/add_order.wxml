@@ -47,6 +47,6 @@
 
     <!-- 提交 -->
     <view class="lay_col_cen">
-        <van-button type="primary" size="large" style="width: 100%;" color="salmon">下单:(${{all_price}})</van-button>
+        <van-button type="primary" size="large" style="width: 100%;" color="salmon" bind:click="add_order">下单:(${{all_price}})</van-button>
     </view>
 </view>

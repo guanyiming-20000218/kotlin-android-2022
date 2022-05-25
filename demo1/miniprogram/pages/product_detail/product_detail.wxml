@@ -61,5 +61,5 @@
   <van-goods-action-icon icon="cart-o" text="购物车" bind:tap="to_shopping_car"/>
   <van-goods-action-icon icon="shop-o" text="店铺" />
   <van-goods-action-button text="加入购物车" type="warning" bind:click="add_shopping_car"/>
-  <van-goods-action-button text="立即购买" bind:click="add_order"/>
+  <van-goods-action-button text="立即购买" bind:click="add_order" bind:click="add_order"/>
 </van-goods-action>

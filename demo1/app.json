@@ -4,7 +4,8 @@
         "miniprogram/pages/my/my",
         "miniprogram/pages/product_detail/product_detail",
         "miniprogram/pages/shopping_car/shopping_car",
-        "miniprogram/pages/add_order/add_order"
+        "miniprogram/pages/add_order/add_order",
+        "miniprogram/pages/order/order"
     ],
     "tabBar": {
         "selectedColor" : "#FF502F",

@@ -23,18 +23,18 @@
         </view>
         <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
         <view class="lay_row_spa">
-            <view class="lay_col_spa" style="height: 120rpx;">
+            <navigator url="../order/order?type=已付款" class="lay_col_spa" style="height: 120rpx;">
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/待发货.png" class="order_icon"></image>
-                <text>待发货</text>
-            </view>
-            <view class="lay_col_spa" style="height: 120rpx;">
+                <text>已付款</text>
+            </navigator>
+            <navigator url="../order/order?type=运输中" class="lay_col_spa" style="height: 120rpx;">
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/运输中.png" class="order_icon"></image>
-                <text>运输中</text>
-            </view>
-            <view class="lay_col_spa" style="height: 120rpx;">
+                <text>运输中</text>         
+            </navigator>
+            <navigator url="../order/order?type=已完成" class="lay_col_spa" style="height: 120rpx;">
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/已收货.png" class="order_icon"></image>
-                <text>已收货</text>
-            </view>
+                <text>已完成</text>
+            </navigator>
             <view class="lay_col_spa" style="height: 120rpx;">
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/售后.png" class="order_icon"></image>
                 <text>售后</text>

@@ -63,3 +63,7 @@
   padding: 20rpx;
   box-sizing: border-box;
 }
+.pad_40{
+  padding: 40rpx;
+  box-sizing: border-box;
+}

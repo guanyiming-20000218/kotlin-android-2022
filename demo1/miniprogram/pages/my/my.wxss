@@ -22,8 +22,10 @@
     height: 80rpx;
 }
 .fun_case{
+    width: 96%;
     background-color: #fff;
     margin-top: 20rpx;
+    margin-left: 18rpx;
     border-radius: 10rpx;
     box-shadow: 5rpx 5rpx 10rpx #888888;
 }
@@ -31,7 +33,6 @@
     height: 150rpx;
 }
 .fun_item{
-    width: 33%;
     font-size: 25rpx;
     color: #888888;
 }
