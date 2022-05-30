@@ -14,7 +14,7 @@
 - [x] 下单功能，在购物车提交订单跳转至下单页面，可以添加地址，查看购买商品列表，计算总价，添加备注，最后下单
 - [x] 查看订单功能，可以分类别查看已付款、运输中、已完成订单
 - [x] 登录功能，支持用户一键注册登录
-- [x] 个人主页，可以查看各类别订单，修改地址、个人信息等
+- [x] 个人主页，可以查看各类别订单，修改地址等，可以登录后台
 - [ ] 简单管理端实现，可上传商品，实现商品管理
 - [ ] 简单售后功能
 - [ ] 简单搜索功能
@@ -78,9 +78,9 @@
 
 ### 1.商城首页
 
-![index](.\page_show\index.png)
+![index](./page_show/index.png)
 
-![index2](.\page_show\index2.png)
+![index2](./page_show/index2.png)
 
 说明：
 
@@ -136,7 +136,7 @@
 
 ### 2.商品详情页
 
-![product_detail](.\page_show\product_detail.png)
+![product_detail](./page_show/product_detail.png)
 
 1.轮播图，调用API swiper 实现，在swiper内实现一个block块，通过for循环调用云数据库中的swiper并展示
 
@@ -185,7 +185,7 @@
 
 ### 3.购物车页面
 
-![shopping_car](.\page_show\shopping_car.png)
+![shopping_car](./page_show/shopping_car.png)
 
 1.购物车列表，从数据库中获取product的信息，通过wx:for循环展示全部
 
@@ -318,7 +318,7 @@
 
 ### 4.下单页面
 
-![add_order](.\page_show\add_order.png)
+![add_order](./page_show/add_order.png)
 
 ![address](.\page_show\address.png)
 
@@ -423,9 +423,9 @@
 
 ### 5.我的页面
 
-![my](.\page_show\my.png)
+![my](./page_show/my.png)
 
-![my2](.\page_show\my2.png)
+![my2](./page_show/my2.png)
 
 1.个人信息，从数据库中获取user里的用户信息并展示头像、昵称等信息
 
@@ -540,7 +540,7 @@ bind:close="close_login_case">
 
 ### 6.订单页面
 
-![order](.\page_show\order.png)
+![order](./page_show/order.png)
 
 1.头部导航，分为已付款、运输中、已完成，绑定事件进行订单类型的选择，每次点击传入订单类型的名称，并调取获取订单函数获得不同类型的订单
 
@@ -601,7 +601,7 @@ bind:close="close_login_case">
 
 - [x] 查看订单功能，可以分类别查看已付款、运输中、已完成订单
 - [x] 登录功能，支持用户一键注册登录
-- [x] 个人主页，可以查看各类别订单，修改地址、个人信息等
+- [x] 个人主页，可以查看各类别订单，修改地址等，可以登录后台
 
 ### 演示
 
@@ -609,7 +609,7 @@ bind:close="close_login_case">
 
 二维码查看：
 
-![迭代3二维码](.\迭代3二维码.jpg)
+![迭代3二维码](./迭代3二维码.jpg)
 
 若二维码失效，请联系开发者，邮箱为2818067461@qq.com
 
