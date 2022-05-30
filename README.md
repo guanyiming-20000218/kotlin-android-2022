@@ -320,7 +320,7 @@
 
 ![add_order](./page_show/add_order.png)
 
-![address](.\page_show\address.png)
+![address](./page_show/address.png)
 
 1.添加地址，绑定bindtap事件，在后端通过API wx.chooseAddress获取，进入添加地址页面
 
