@@ -1,0 +1,57 @@
+<!--miniprogram/pages/admin_upload_product/admin_upload_product.wxml-->
+<view class="lay_col_sta pad_20">
+    <!-- 商品信息的输入框 -->
+    <view class="lay_col_cen pad_20 case">
+        <view class="lay_row_sta">
+            <text style="font-size: 30rpx;">商品信息</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta" style="font-size: 25rpx;height: 70rpx;">
+            <text>商品名：</text>
+            <input type="text" placeholder="请输入商品名" style="margin-left: 10rpx;" data-name="name" bindinput="input_msg"/>
+        </view>
+        <view class="lay_row_sta" style="font-size: 25rpx;height: 70rpx;">
+            <text>商品原价：</text>
+            <input type="text" placeholder="请输入商品原价" style="margin-left: 10rpx;" data-name="h_price" bindinput="input_msg"/>
+        </view>
+        <view class="lay_row_sta" style="font-size: 25rpx;height: 70rpx;">
+            <text>商品价格：</text>
+            <input type="text" placeholder="请输入商品价格" style="margin-left: 10rpx;" data-name="price" bindinput="input_msg"/>
+        </view>
+    </view>
+    <!-- 商品规格 -->
+    <view class="lay_col_cen pad_20 case" style="margin-top: 40rpx;">
+        <view class="lay_row_spa">
+            <text style="font-size: 30rpx;">商品规格</text>
+            <view class="lay_row_spa" style="width: 70%;margin-left: 80rpx;">
+                <view class="lay_row_cen input_case" style="width: 70%;">
+                    <input type="text" placeholder="请输入规格" value="{{input_specs}}" bindinput="input_msg" data-name="input_specs"/>
+                </view>
+                <van-button type="primary" size="small" style="margin-left: 50rpx;" bind:click="add_specs">新增</van-button>
+            </view>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta" style="flex-wrap: wrap;">
+            <block wx:for="{{specs}}" wx:key="index">
+                <view class="lay_row_cen specs_case">
+                    <text>{{item}}</text>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <!-- 上传轮播图 -->
+    <view class="lay_col_cen pad_20 case" style="margin-top: 40rpx;">
+        <view class="lay_row_spa">
+            <text style="font-size: 30rpx;">轮播图</text>
+            <van-button type="primary" size="small" style="margin-left: 445rpx;" bind:click="add_img">新增</van-button>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta" style="flex-wrap: wrap;">
+            <block wx:for="{{img}}" wx:key="index">
+                <image src="{{item}}" class="swiper_img" data-name="{{item}}" bindlongpress="delete_img"></image>
+            </block>
+        </view>
+    </view>
+
+</view>

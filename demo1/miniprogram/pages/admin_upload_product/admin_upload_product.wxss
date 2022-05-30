@@ -1,0 +1,28 @@
+/* miniprogram/pages/admin_upload_product/admin_upload_product.wxss */
+.case{
+    background-color: white;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+    font-size: 25rpx;
+    color: #888888;
+}
+.input_case{
+    height: 60rpx;
+    border: 2rpx solid #888888;
+    border-radius: 10rpx;
+    font-size: 25rpx;
+}
+.specs_case{
+    width: 25%;
+    height: 60rpx;
+    background-color: #FF502f;
+    color: #ffffff;
+    border-radius: 10rpx;
+    margin: 10rpx;
+}
+.swiper_img{
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 10rpx;
+    margin: 10rpx;
+}

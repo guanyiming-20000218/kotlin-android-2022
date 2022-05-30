@@ -81,9 +81,30 @@
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
             <text>我的地址</text>
         </view>
-        <view class="lay_col_cen fun_item">
-            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/地址.png" class="fun_img"></image>
-            <text>我的地址</text>
+        <view class="lay_col_cen fun_item" bindtap="show_login_case">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/后台总览.png" class="fun_img"></image>
+            <text>后台管理</text>
         </view>
     </view>
 </view>
+
+<!-- 登录弹窗 -->
+<van-popup show="{{ show_login }}" round closeable position="bottom" custom-style="height: 60%" 
+bind:close="close_login_case">
+    <view class="lay_col_sta pad_20">
+        <view class="lay_row_cen" style="height: 100rpx;">
+            <text>登录</text>
+        </view>
+        <view class="lay_row_sta" style="width: 70%;margin-top: 90rpx;">
+            <van-icon name="friends-o" />
+            <input type="text" placeholder="账号" style="margin-left: 20rpx;" data-name="username" bindinput="input_msg"/>
+        </view>
+        <van-divider style="width: 70%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta" style="width: 70%;margin-top: 50rpx;">
+            <van-icon name="friends-o" />
+            <input type="password" placeholder="密码" style="margin-left: 20rpx;" data-name="password" bindinput="input_msg"/>
+        </view>
+        <van-divider style="width: 70%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <button style="width: 70%;margin-top: 80rpx;" bindtap="login_admin" disabled="{{is_login?'true':''}}">登录</button>
+    </view>
+</van-popup>

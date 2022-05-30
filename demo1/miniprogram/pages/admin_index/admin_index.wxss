@@ -1,0 +1,19 @@
+/* miniprogram/pages/admin_index/admin_index.wxss */
+.head{
+    align-items: flex-start;
+    background-color: #ff502f;
+    height: 150rpx;
+    font-size: 25rpx;
+    color:#ffffff;
+}
+.fun_img{
+    width: 100rpx;
+    height: 100rpx;
+}
+.upload_case{
+    background-color: white;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+    font-size: 25rpx;
+    color: #888888;
+}

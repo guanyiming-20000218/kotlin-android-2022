@@ -1,0 +1,66 @@
+<!--miniprogram/pages/admin_index/admin_index.wxml-->
+<view class="lay_col_cen pad_20 head" style="align-items: center;">
+    <text style="font-size: 35rpx;">欢迎进入农产品商城</text>
+    <text>农产品商城，最好的农产品销售平台</text>
+</view>
+
+<view class="lay_col_cen pad_20">
+    <view class="lay_row_spa">
+        <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
+            class="fun_img"></image>
+            <text >上传商品</text>
+        </view>
+        <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
+            class="fun_img"></image>
+            <text >上传商品</text>
+        </view>
+        <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
+            class="fun_img"></image>
+            <text >上传商品</text>
+        </view>
+    </view>
+    <view class="lay_row_spa upload_case" style="margin-top: 30rpx;">
+        <view class="lay_col_cen pad_20" style="width: 50%;">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/订单.png"
+            class="fun_img" style="width: 80rpx;height: 80rpx;"></image>
+            <text >订单管理</text>
+        </view>
+        <view class="lay_col_cen pad_20" style="width: 50%;box-shadow: 5rx 5rpx 10rpx #dac0c0;border-radius: 10rpx;">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
+            class="fun_img"></image>
+            <text >上传商品</text>
+        </view>
+    </view>
+
+    <!-- 数据展示 -->
+    <view class="lay_col_cen pad_20 upload_case" style="margin-top: 40rpx;">
+        <view class="lay_row_sta">
+            <text>数据中心</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_spa" style="border-bottom: 2rpx solid #888888;">
+            <view class="lay_col_cen" style="width: 48%;height: 120rpx;border-right: 2rpx solid #888888;justify-content: center;">
+                <text>0</text>
+                <text>当日订单量</text>
+            </view>
+            <view class="lay_col_cen" style="width: 48%;height: 120rpx;justify-content: center;">
+                <text>0</text>
+                <text>当月订单量</text>
+            </view>
+        </view>
+        <view class="lay_row_spa" style="border-bottom: 2rpx solid #888888;">
+            <view class="lay_col_cen" style="width: 48%;height: 120rpx;border-right: 2rpx solid #888888;justify-content: center;">
+                <text>0</text>
+                <text>今日营业额</text>
+            </view>
+            <view class="lay_col_cen" style="width: 48%;height: 120rpx;justify-content: center;">
+                <text>0</text>
+                <text>待发货单</text>
+            </view>
+        </view>
+    </view>
+</view>
+

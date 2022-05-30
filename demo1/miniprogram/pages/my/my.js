@@ -1,13 +1,79 @@
 // miniprogram/pages/my/my.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        show : true,
-        user : {}
+        show_login : false,
+        user : {},
+        username:"",
+        password:"",
+        is_login:false
+    },
+    login_admin(){
+        let that = this
+        wx.showLoading({
+            title: '登录中',
+          })
+        if(that.data.username == '' || that.data.password == ''){
+            wx.showToast({
+              title: '请输入账号或密码',
+              icon:"none"
+            })
+        }
+        else{
+            that.setData({
+                is_login:true
+            })
+            db.collection('admin').where({
+                username:that.data.username,
+                password:that.data.password,
+            }).get().then(res=>{
+                console.log('登录',res)
+                that.setData({
+                    is_login:false
+                })
+                wx.hideLoading()
+                if(res.data.length==0){
+                    wx.showToast({
+                      title: '账号或密码错误',
+                    })
+                }else{
+                    app.globalData.admin=res.data[0]
+                    wx.navigateTo({
+                      url: '../admin_index/admin_index',
+                    })
+                }
+            })
+        }
+        
+    },
+    // 输入信息
+    input_msg(e){
+        let that = this
+        let name = e.currentTarget.dataset.name
+        that.setData({
+            [name]:e.detail.value
+        })
+    },
+    // 打开登录框
+    show_login_case(){
+        let that = this
+        that.setData({
+            show_login:true
+        })
+        wx.hideTabBar()
+    },
+    // 关闭登录框
+    close_login_case(){
+        let that = this
+        that.setData({
+            show_login:false
+        })
+        wx.showTabBar()
     },
     //我的地址
     my_address(){
