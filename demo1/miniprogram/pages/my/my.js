@@ -13,6 +13,7 @@ Page({
         password:"",
         is_login:false
     },
+    // 后台登录
     login_admin(){
         let that = this
         wx.showLoading({
@@ -49,7 +50,6 @@ Page({
                 }
             })
         }
-        
     },
     // 输入信息
     input_msg(e){

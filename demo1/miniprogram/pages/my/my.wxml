@@ -6,13 +6,6 @@
         <text style="color: white;">{{user.userInfo.nickName}}</text>
     </view>
     <text style="font-size: 25rpx;color: white;">修改</text>
-
-    <!-- <van-popup show="{{ show }}" 
-    position="bottom"
-    round
-    closeable
-    custom-style="height: 50%;"
-    bind:close="onClose"></van-popup>   -->
 </view>
 
 <!-- 订单 -->
