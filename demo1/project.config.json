@@ -42,7 +42,7 @@
         "ignoreUploadUnusedFiles": true
     },
     "compileType": "miniprogram",
-    "libVersion": "2.24.2",
+    "libVersion": "2.23.4",
     "appid": "wxdbff1a7251f1f895",
     "projectname": "demo1",
     "debugOptions": {
@@ -54,6 +54,7 @@
         "servePath": ""
     },
     "isGameTourist": false,
+    "cloudfunctionRoot": "cloudfunctions/",
     "condition": {
         "search": {
             "list": []
@@ -73,6 +74,5 @@
         "miniprogram": {
             "list": []
         }
-    },
-    "cloudfunctionRoot": "cloudfunctions/"
+    }
 }
