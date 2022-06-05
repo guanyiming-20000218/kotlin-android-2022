@@ -11,6 +11,27 @@ Page({
         remarks:"",
         all_price:0
     },
+    // 从购物车中删除商品
+    delete_goods(){
+        let that = this
+        for(let i = 0;i<that.data.goods.length;i++){
+            db.collection('shopping_car').doc(that.data.goods[i]._id).remove()
+        }
+    },
+    // 增加销量
+    inc_sales_volume(){
+        let that = this
+        for(let i = 0;i<that.data.goods.length;i++){
+            wx.cloud.callFunction({
+                name:'product_manage',
+                data:{
+                    method:"inc_sales_volume",
+                    id:that.data.goods[i].product_id,
+                    num:that.data.goods[i].product_num
+                }
+            })
+        }
+    },
     //下单事件
     add_order(){
         let that = this
@@ -38,6 +59,8 @@ Page({
                 wx.showToast({
                   title: '下单成功',
                 })
+                that.inc_sales_volume()
+                that.delete_goods()
                 wx.removeStorage({
                   key: 'goods',
                   success(res){

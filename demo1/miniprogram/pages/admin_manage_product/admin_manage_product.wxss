@@ -1,0 +1,25 @@
+/* miniprogram/pages/admin_manage_product/admin_manage_product.wxss */
+.head{
+    background-color: #ff502f;
+    height: 6vh;
+}
+.search{
+    background-color: #ffffff;
+    width: 70%;
+    height: 70%;
+    border-radius: 10rpx;
+    font-size: 25rpx;
+    margin-left: 20rpx;
+}
+.case{
+    background-color: white;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+    font-size: 25rpx;
+    color: #888888;
+}
+.pro_img{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 10rpx;
+}

@@ -17,7 +17,7 @@ exports.main = async (event, context) => {
             specs:event.specs,
             img:event.img,
             img_detail:event.img_detail,
-            sales_volume:0
+            sales_volume:100
         }
     })
 }

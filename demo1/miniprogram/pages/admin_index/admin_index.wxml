@@ -3,18 +3,18 @@
     <text style="font-size: 35rpx;">欢迎进入农产品商城</text>
     <text>农产品商城，最好的农产品销售平台</text>
 </view>
-
+<!-- 功能区 -->
 <view class="lay_col_cen pad_20">
     <view class="lay_row_spa">
-        <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
+        <navigator url="../admin_upload_product/admin_upload_product" class="lay_col_cen pad_20 upload_case" style="width: 33%;">
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
             class="fun_img"></image>
             <text >上传商品</text>
-        </view>
+        </navigator>
         <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
-            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/商品管理.png"
             class="fun_img"></image>
-            <text >上传商品</text>
+            <text >商品管理</text>
         </view>
         <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"

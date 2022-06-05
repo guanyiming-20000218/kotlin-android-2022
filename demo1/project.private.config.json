@@ -58,6 +58,13 @@
                     "name": "上传商品",
                     "pathName": "miniprogram/pages/admin_upload_product/admin_upload_product",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "管理商品",
+                    "pathName": "miniprogram/pages/admin_manage_product/admin_manage_product",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }
