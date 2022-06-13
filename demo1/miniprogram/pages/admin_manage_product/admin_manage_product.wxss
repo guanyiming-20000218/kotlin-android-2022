@@ -1,6 +1,6 @@
 /* miniprogram/pages/admin_manage_product/admin_manage_product.wxss */
 .head{
-    background-color: #ff502f;
+    background-color: #9ACD32;
     height: 6vh;
 }
 .search{

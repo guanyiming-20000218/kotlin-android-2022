@@ -1,0 +1,43 @@
+/* miniprogram/pages/admin_manage_order/admin_manage_order.wxss */
+.search{
+    background-color: rgb(191, 238, 144);
+    height: 6vh;
+    font-size: 25rpx;
+}
+.search_case{
+    width: 90%;
+    height: 90%;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+.state_case{
+    height: 5vh;
+    background-color: #ffffff;
+    font-size: 25rpx;
+
+}
+.select_state{
+    color:rgb(191, 238, 144) ;
+    border-bottom: 2rpx solid rgb(191, 238, 144);
+}
+.order{
+    width: 100%;
+    height: 89vh;
+}
+.case{
+    background-color: white;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+    font-size: 25rpx;
+    color: #888888;
+}
+.goods_img{
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 10rpx;
+}
+.deliver_case{
+    height: 92vh;
+    width: 100%;
+    font-size: 25rpx;
+}

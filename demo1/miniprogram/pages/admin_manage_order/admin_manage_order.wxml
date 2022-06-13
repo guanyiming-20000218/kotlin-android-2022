@@ -1,0 +1,86 @@
+<!--miniprogram/pages/admin_manage_order/admin_manage_order.wxml-->
+<!-- 搜索框 -->
+<view class="lay_col_cen search">
+    <view class="lay_row_cen search_case">
+        <input type="text" placeholder="请输入用户名" style="width: 100%;height: 100%;text-align: center;"/>
+    </view>
+</view>
+<!-- 状态栏 -->
+<view class="lay_row_spa state_case">
+    <view class="lay_row_cen {{order_state=='已付款'?'select_state':''}}" style="width: 32%;" data-name="已付款" bindtap="select_order_state">
+        <text style="margin-left: 100rpx;">已付款</text>
+    </view>
+    <view class="lay_row_cen {{order_state=='运输中'?'select_state':''}}" style="width: 32%;" data-name="运输中" bindtap="select_order_state">
+        <text style="margin-left: 100rpx;">运输中</text>
+    </view>
+    <view class="lay_row_cen {{order_state=='售后'?'select_state':''}}" style="width: 32%;" data-name="售后" bindtap="select_order_state">
+        <text style="margin-left: 100rpx;">售后</text>
+    </view>
+</view>
+
+<!-- 订单 -->
+<scroll-view scroll-y="true" class="order">
+<view class="lay_col_sta pad_20">
+    <block wx:for="{{order}}" wx:key="index">
+        <view class="lay_col_cen pad_20 case" style="font-size: 25rpx;margin-bottom: 25rpx;">
+            <view class="lay_row_spa">
+                <text>{{item.address.userName}}-{{item.address.telNumber}}</text>
+                <text wx:if="{{item.type == '已付款'}}" style="color: rgb(15, 199, 46);margin-left: 300rpx;">{{item.type}}</text>
+                <text wx:if="{{item.type == '运输中'}}" style="color: rgb(187, 134, 35);margin-left: 300rpx;">{{item.type}}</text>
+                <text wx:if="{{item.type == '售后'}}" style="color: rgb(238, 32, 17);margin-left: 300rpx;">{{item.type}}</text>
+            </view>
+            <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+            <view class="lay_row_spa">
+                <image src="{{item.goods[0].product_img}}" class="goods_img"></image>
+                <view class="lay_col_spa" style="height: 140rpx;width: 70%;align-items: flex-start;margin-left: 100rpx;">
+                    <text>{{item.goods[0].product_name}}</text>
+                    <text style="color: #888888;">{{item.goods[0].product_specs}}X{{item.goods[0].product_num}}</text>
+                    <text style="color: red;margin-top: 50rpx;">$:<text style="font-size: 30rpx;">{{item.goods[0].product_price}}</text></text>
+                </view>
+            </view>
+            <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+            <view class="lay_row_end" style="margin-left: 800rpx;">
+                <view class="lay_row_cen" style="width: 20%;" wx:if="{{item.type=='已付款'}}">
+                    <van-button type="primary" color="rgb(15, 199, 46)" size="mini" data-id="{{item._id}}" 
+                    bind:click="deliver_case_show">立即发货</van-button>
+                </view>
+                <view class="lay_row_cen" style="width: 20%;" wx:if="{{item.type=='已付款'}}">
+                    <van-button type="primary" color="red" size="mini">取消订单</van-button>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+</scroll-view>
+<!-- 物流弹出层 -->
+<van-popup show="{{ deliver_case_show }}" round closeable position="bottom" custom-style="height:40%;" bind:close="deliver_case_close">
+<view class="lay_row_cen" style="height: 8vh;">
+    <text style="margin-left: 300rpx;">立即发货</text>
+</view>
+<scroll-view scroll-y="true" class="deliver_case">
+    <view class="lay_col_sta pad_20">
+        <view class="lay_row_cen">
+            <picker mode="selector" style="width: 100%;" range="{{express}}" bindchange="select_express">
+                <view class="lay_row_spa" style="height: 70%;">
+                    <text style="font-size: 25rpx;width: 30%;">快递公司</text>
+                    <view class="lay_row_end" style="width: 70%;font-size: 25rpx;margin-left: 400rpx;">
+                        <text>{{select_express}}</text>
+                        <van-icon name="arrow"/>
+                    </view>
+                </view>
+            </picker>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_spa">
+            <text>快递单号</text>
+            <input type="text" placeholder="输入快递单号" style="width: 70%;text-align: right;margin-left: 40rpx;"
+             data-name="express_number" bindinput="input_msg"/>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_col_cen" style="height:200rpx;">
+            <van-button type="primary" disabled="{{is_submit?'true':''}}" style="width: 100%;margin-top: 100rpx;" size="large" 
+            bindtap="deliver_goods">立即发货</van-button>
+        </view>
+    </view>
+</scroll-view>
+</van-popup>

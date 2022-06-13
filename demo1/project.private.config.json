@@ -65,6 +65,13 @@
                     "name": "管理商品",
                     "pathName": "miniprogram/pages/admin_manage_product/admin_manage_product",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "管理订单",
+                    "pathName": "miniprogram/pages/admin_manage_order/admin_manage_order",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }
