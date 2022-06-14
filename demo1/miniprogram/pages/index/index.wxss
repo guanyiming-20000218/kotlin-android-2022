@@ -119,3 +119,23 @@
     height: 300rpx;
     border-radius: 10rpx;
 }
+.search_case{
+    width: 90%;
+    height: 600rpx;
+    background-color: #ffffff;
+    position: fixed;
+    top: 100rpx;
+    z-index: 999;
+}
+.case{
+    background-color: white;
+    border-radius: 10rpx;
+    box-shadow: 5rpx 5rpx 10rpx #888888;
+    font-size: 25rpx;
+    color: #888888;
+}
+.g_img{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 10rpx;
+}

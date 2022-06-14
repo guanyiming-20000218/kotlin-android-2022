@@ -20,5 +20,12 @@ exports.main = async (event, context) => {
                 logistics_time:db.serverDate()
             }
         })
+    }else if(event.method == 'cancel_order'){
+        return await db.collection('order').doc(event.id).update({
+            data:{
+                type:"售后",
+                aftermarket_state:"已售后"
+            }
+        })
     }
 }

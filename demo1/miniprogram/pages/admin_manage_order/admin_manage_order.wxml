@@ -8,13 +8,13 @@
 <!-- 状态栏 -->
 <view class="lay_row_spa state_case">
     <view class="lay_row_cen {{order_state=='已付款'?'select_state':''}}" style="width: 32%;" data-name="已付款" bindtap="select_order_state">
-        <text style="margin-left: 100rpx;">已付款</text>
+        <text>已付款</text>
     </view>
     <view class="lay_row_cen {{order_state=='运输中'?'select_state':''}}" style="width: 32%;" data-name="运输中" bindtap="select_order_state">
-        <text style="margin-left: 100rpx;">运输中</text>
+        <text>运输中</text>
     </view>
     <view class="lay_row_cen {{order_state=='售后'?'select_state':''}}" style="width: 32%;" data-name="售后" bindtap="select_order_state">
-        <text style="margin-left: 100rpx;">售后</text>
+        <text>售后</text>
     </view>
 </view>
 
@@ -39,13 +39,14 @@
                 </view>
             </view>
             <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
-            <view class="lay_row_end" style="margin-left: 800rpx;">
+            <view class="lay_row_end">
                 <view class="lay_row_cen" style="width: 20%;" wx:if="{{item.type=='已付款'}}">
                     <van-button type="primary" color="rgb(15, 199, 46)" size="mini" data-id="{{item._id}}" 
                     bind:click="deliver_case_show">立即发货</van-button>
                 </view>
                 <view class="lay_row_cen" style="width: 20%;" wx:if="{{item.type=='已付款'}}">
-                    <van-button type="primary" color="red" size="mini">取消订单</van-button>
+                    <van-button type="primary" color="red" size="mini" data-id="{{item._id}}" 
+                    bind:click="update_order_state">取消订单</van-button>
                 </view>
             </view>
         </view>
@@ -55,7 +56,7 @@
 <!-- 物流弹出层 -->
 <van-popup show="{{ deliver_case_show }}" round closeable position="bottom" custom-style="height:40%;" bind:close="deliver_case_close">
 <view class="lay_row_cen" style="height: 8vh;">
-    <text style="margin-left: 300rpx;">立即发货</text>
+    <text>立即发货</text>
 </view>
 <scroll-view scroll-y="true" class="deliver_case">
     <view class="lay_col_sta pad_20">

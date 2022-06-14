@@ -11,11 +11,11 @@
             class="fun_img"></image>
             <text >上传商品</text>
         </navigator>
-        <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
+        <navigator url="../admin_manage_product/admin_manage_product" class="lay_col_cen pad_20 upload_case" style="width: 33%;">
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/商品管理.png"
             class="fun_img"></image>
             <text >商品管理</text>
-        </view>
+        </navigator>
         <view class="lay_col_cen pad_20 upload_case" style="width: 33%;">
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
             class="fun_img"></image>
@@ -23,11 +23,11 @@
         </view>
     </view>
     <view class="lay_row_spa upload_case" style="margin-top: 30rpx;">
-        <view class="lay_col_cen pad_20" style="width: 50%;">
+        <navigator url="../admin_manage_order/admin_manage_order" class="lay_col_cen pad_20" style="width: 50%;">
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/订单.png"
             class="fun_img" style="width: 80rpx;height: 80rpx;"></image>
             <text >订单管理</text>
-        </view>
+        </navigator>
         <view class="lay_col_cen pad_20" style="width: 50%;box-shadow: 5rx 5rpx 10rpx #dac0c0;border-radius: 10rpx;">
             <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/云上传_o.png"
             class="fun_img"></image>

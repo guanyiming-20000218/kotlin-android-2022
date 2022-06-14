@@ -28,10 +28,10 @@
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/已收货.png" class="order_icon"></image>
                 <text>已完成</text>
             </navigator>
-            <view class="lay_col_spa" style="height: 120rpx;">
+            <navigator url="../aftermarket/aftermarket" class="lay_col_spa" style="height: 120rpx;">
                 <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/icon/售后.png" class="order_icon"></image>
                 <text>售后</text>
-            </view>
+            </navigator>
         </view>
     </view>
 </view>

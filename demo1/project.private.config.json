@@ -72,6 +72,13 @@
                     "name": "管理订单",
                     "pathName": "miniprogram/pages/admin_manage_order/admin_manage_order",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "售后",
+                    "pathName": "miniprogram/pages/aftermarket/aftermarket",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }

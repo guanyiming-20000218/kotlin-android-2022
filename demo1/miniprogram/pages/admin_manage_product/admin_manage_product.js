@@ -62,7 +62,6 @@ Page({
         }else{
             that.get_product()
         }
-
     },
     //转化时间
     change_time(li){

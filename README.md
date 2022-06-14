@@ -17,8 +17,8 @@
 - [x] 个人主页，可以查看各类别订单，修改地址等，可以登录后台
 - [x] 简单管理端实现，可上传商品，搜索不同类型的商品，实现商品管理
 - [x] 实现后台订单管理功能，可以查看所有类型订单，选择发货或者取消订单
-- [ ] 简单售后功能
-- [ ] 简单搜索功能
+- [x] 简单售后功能，用户可以选择是否售后，并联系客服
+- [x] 简单搜索功能，在商品主页和后台管理均可实现商品的搜索
 - [ ] 支持商品分类
 - [ ] 支持商品评价功能
 
@@ -112,12 +112,66 @@
 
 ![index2](./page_show/index2.png)
 
+![search](./page_show/search.png)
+
 说明：
 
-1.搜索框，引入Vant组件实现
+1.搜索框，引入Vant组件实现，点击后会出现搜索栏，通过API db.RegExp实现名称搜索并展示
 
 ```
-<van-search value="{{ value }}" input-align="center" placeholder="请输入搜索关键词"/>
+<van-search
+value="{{ value }}"
+placeholder="请输入搜索关键词"
+shape = "round"
+show-action
+bind:change="onSearch"
+bind:cancel="onCancel"
+bind:focus="search_case_show"
+bind:blur="search_case_close"
+style="background-color: #FF502F;"/>
+<view class="lay_col_cen" wx:if="{{search_case}}">
+    <view class="lay_col_sta case search_case">
+        <scroll-view style="width: 100%;height: 100%;" scroll-y="true">
+            <view class="lay_col_sta pad_20">
+                <block wx:for="{{search_list}}" wx:key="index">
+                    <view class="lay_row_spa">
+                        <image src="{{item.img[0]}}" class="g_img"></image>
+                        <text>{{item.name}}</text>
+                        <text style="color:red;">${{item.price}}</text>
+                    </view>
+                    <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+```
+
+```
+    onSearch(e){
+        let that = this
+        if(e.detail){
+            wx.showLoading({
+                title: '搜索中',
+            })
+            db.collection('product').where({
+                name: db.RegExp({
+                    regexp: e.detail,
+                    options: 'i',
+                })
+            }).get().then(res=>{
+                wx.hideLoading()
+                console.log(res)
+                that.setData({
+                    search_list:res.data
+                })
+            })
+        }else{
+            that.setData({
+                search_list:[],
+            })
+        }
+    },
 ```
 
 2.轮播图，调用API swiper 实现，在swiper内实现一个block块，通过for循环调用云数据库中的swiper并展示
@@ -627,6 +681,494 @@ bind:close="close_login_case">
 
 ### 7.后台页面
 
+![admin_index](./page_show/admin_index.png)
+
+1.上传商品、商品管理、订单管理分别通过navigator链接到相应页面
+
+### 8.后台上传商品页面
+
+上传商品，管理员可以输入商品信息，商品分类，商品规格等信息进行商品上传，上传后商品添加至商城首页的商品列表
+
+![admin_upload](./page_show/admin_upload.png)
+
+所有的信息通过block，wx:for循环展示，每个按钮绑定事件
+
+```
+    <!-- 商品分类 -->
+    <view class="lay_col_cen pad_20 case" style="margin-top: 40rpx;">
+        <view class="lay_row_spa">
+            <text style="font-size: 30rpx;">商品分类</text>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta" style="flex-wrap: wrap;">
+            <van-radio-group value="{{ classify }}" direction="horizontal" bind:change="select_classify">
+                <block wx:for="{{classify}}" wx:key="index">
+                    <van-radio name="{{item.name}}" >{{item.name}}</van-radio>
+                </block>
+            </van-radio-group>
+        </view>
+    </view>
+    <!-- 商品规格 -->
+    <view class="lay_col_cen pad_20 case" style="margin-top: 40rpx;">
+        <view class="lay_row_spa">
+            <text style="font-size: 30rpx;">商品规格</text>
+            <view class="lay_row_spa" style="width: 70%;margin-left: 80rpx;">
+                <view class="lay_row_cen input_case" style="width: 70%;">
+                    <input type="text" placeholder="请输入规格" value="{{input_specs}}" bindinput="input_msg" data-name="input_specs"/>
+                </view>
+                <van-button type="primary" size="small" style="margin-left: 50rpx;" bind:click="add_specs">新增</van-button>
+            </view>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_sta" style="flex-wrap: wrap;">
+            <block wx:for="{{specs}}" wx:key="index">
+                <view class="lay_row_cen specs_case">
+                    <text>{{item}}</text>
+                </view>
+            </block>
+        </view>
+    </view>
+```
+
+提交时通过async实现提交，提交图片通过wx.cloud.uploadFile API，通过云函数wx.cloud.callFunction product将信息提交到数据库，并展示在商品首页
+
+```
+![admin_order_1](D:\1_大三下学习\智能移动开发\kotlin-android-2022\page_show\admin_order_1.png)    async submit(){
+        let that = this
+        let img = that.data.img
+        let img_detail = that.data.img_detail
+        wx.showLoading({
+          title: '上传中',
+        })
+        for(let i = 0;i<img.length;i++){
+            var timestamp = new Date().getTime()
+            await wx.cloud.uploadFile({
+                cloudPath: 'product/'+timestamp+''+i+''+'.png',
+                filePath: img[i], // 文件路径
+            }).then(async res => {
+                // get resource ID
+                console.log(res.fileID)
+                img[i] = res.fileID
+                if(i+1==img.length){
+                    for(let j = 0;j<img_detail.length;j++){
+                        var timestamp = new Date().getTime()
+                        await wx.cloud.uploadFile({
+                            cloudPath: 'product_detail/'+timestamp+''+j+''+'.png',
+                            filePath: img_detail[j], // 文件路径
+                        }).then(res_1 => {
+                            // get resource ID
+                            console.log(res_1.fileID)
+                            img_detail[j] = res_1.fileID
+                            if(j+1 == img_detail.length){
+                                console.log('1')
+                                wx.cloud.callFunction({
+                                    name:"product",
+                                    data:{
+                                        name:that.data.name,
+                                        h_price:that.data.h_price,
+                                        price:that.data.price,
+                                        specs:that.data.specs,
+                                        img:img,
+                                        img_detail:img_detail,
+                                    }
+                                }).then(res_2=>{
+                                    wx.hideLoading()
+                                    console.log('2',res_2)
+                                })
+                            }
+                        }).catch(error => {
+                            // handle error
+                        })
+                    }
+                }
+            }).catch(error => {
+                // handle error
+            })
+        }
+    },
+```
+
+### 9.后台订单管理页面
+
+![admin_order_1](./page_show/admin_order_1.png)
+
+
+
+![admin_order_2](./page_show/admin_order_2.png)
+
+![admin_order_3](./page_show/admin_order_3.png)
+
+订单管理，可以查看已付款、运输中、售后三个状态，每次选择在后端更新订单
+
+```
+<!-- 订单 -->
+<scroll-view scroll-y="true" class="order">
+<view class="lay_col_sta pad_20">
+    <block wx:for="{{order}}" wx:key="index">
+        <view class="lay_col_cen pad_20 case" style="font-size: 25rpx;margin-bottom: 25rpx;">
+            <view class="lay_row_spa">
+                <text>{{item.address.userName}}-{{item.address.telNumber}}</text>
+                <text wx:if="{{item.type == '已付款'}}" style="color: rgb(15, 199, 46);margin-left: 300rpx;">{{item.type}}</text>
+                <text wx:if="{{item.type == '运输中'}}" style="color: rgb(187, 134, 35);margin-left: 300rpx;">{{item.type}}</text>
+                <text wx:if="{{item.type == '售后'}}" style="color: rgb(238, 32, 17);margin-left: 300rpx;">{{item.type}}</text>
+            </view>
+            <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+            <view class="lay_row_spa">
+                <image src="{{item.goods[0].product_img}}" class="goods_img"></image>
+                <view class="lay_col_spa" style="height: 140rpx;width: 70%;align-items: flex-start;margin-left: 100rpx;">
+                    <text>{{item.goods[0].product_name}}</text>
+                    <text style="color: #888888;">{{item.goods[0].product_specs}}X{{item.goods[0].product_num}}</text>
+                    <text style="color: red;margin-top: 50rpx;">$:<text style="font-size: 30rpx;">{{item.goods[0].product_price}}</text></text>
+                </view>
+            </view>
+            <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+            <view class="lay_row_end">
+                <view class="lay_row_cen" style="width: 20%;" wx:if="{{item.type=='已付款'}}">
+                    <van-button type="primary" color="rgb(15, 199, 46)" size="mini" data-id="{{item._id}}" 
+                    bind:click="deliver_case_show">立即发货</van-button>
+                </view>
+                <view class="lay_row_cen" style="width: 20%;" wx:if="{{item.type=='已付款'}}">
+                    <van-button type="primary" color="red" size="mini" data-id="{{item._id}}" 
+                    bind:click="update_order_state">取消订单</van-button>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+
+```
+
+![admin_order_4](./page_show/admin_order_4.png)
+
+管理员可以点击立即发货，弹出物流选择，商品变为运输中
+
+```
+<!-- 物流弹出层 -->
+<van-popup show="{{ deliver_case_show }}" round closeable position="bottom" custom-style="height:40%;" bind:close="deliver_case_close">
+<view class="lay_row_cen" style="height: 8vh;">
+    <text>立即发货</text>
+</view>
+<scroll-view scroll-y="true" class="deliver_case">
+    <view class="lay_col_sta pad_20">
+        <view class="lay_row_cen">
+            <picker mode="selector" style="width: 100%;" range="{{express}}" bindchange="select_express">
+                <view class="lay_row_spa" style="height: 70%;">
+                    <text style="font-size: 25rpx;width: 30%;">快递公司</text>
+                    <view class="lay_row_end" style="width: 70%;font-size: 25rpx;margin-left: 400rpx;">
+                        <text>{{select_express}}</text>
+                        <van-icon name="arrow"/>
+                    </view>
+                </view>
+            </picker>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_row_spa">
+            <text>快递单号</text>
+            <input type="text" placeholder="输入快递单号" style="width: 70%;text-align: right;margin-left: 40rpx;"
+             data-name="express_number" bindinput="input_msg"/>
+        </view>
+        <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+        <view class="lay_col_cen" style="height:200rpx;">
+            <van-button type="primary" disabled="{{is_submit?'true':''}}" style="width: 100%;margin-top: 100rpx;" size="large" 
+            bindtap="deliver_goods">立即发货</van-button>
+        </view>
+    </view>
+</scroll-view>
+</van-popup>
+
+//后端
+    // 立刻发货
+    deliver_goods(){
+        let that = this
+        if(that.data.select_express == '请选择快递' || !that.data.express_number){
+            wx.showToast({
+              title: '请填入信息',
+              icon:"none"
+            })
+        }else{
+            wx.showLoading({
+              title: '发货中',
+            })
+            that.setData({
+                is_submit:true
+            })
+            wx.cloud.callFunction({
+                name:"order",
+                data:{
+                    method:"deliver_goods",
+                    id:that.data.order_id,
+                    logistics:{
+                        select_express : that.data.select_express,
+                        express_number: that.data.express_number,
+                    }
+                }
+            }).then(res=>{
+                wx.hideLoading()
+                that.setData({
+                    select_express:'请选择快递',
+                    express_number:"",
+                    deliver_case_show:false,
+                    order_skip:0,
+                })
+                that.get_order('已付款',0)
+            })
+        }
+    },
+```
+
+点击取消订单，商品变为售后
+
+```
+    // 更新订单状态
+    update_order_state(e){
+        let that = this
+        let id = e.currentTarget.dataset.id
+        wx.showModal({
+            title: '提示',
+            content: '是否取消订单',
+            success (res) {
+                if (res.confirm) {
+                    console.log('用户点击确定')
+                    that.setData({
+                        order_skip:0
+                    })
+                    wx.showLoading({
+                      title: '取消订单中',
+                    })
+                    wx.cloud.callFunction({
+                        name:"order",
+                        data:{
+                            method:"cancel_order",
+                            id:id,
+                        }
+                    }).then(order=>{
+                        console.log(order)
+                        wx.hideLoading()
+                        that.get_order(that.data.order_state,that.data.order_skip)
+                    })
+                } else if (res.cancel) {
+                console.log('用户点击取消')
+                }
+            }
+        })
+    },
+```
+
+### 10.后台商品管理页面
+
+![admin_manage_1](./page_show/admin_manage_1.png)
+
+可以查看所有商品，按类型、名称搜索商品，通过scroll-view实现，每个商品通过navigator链接到商品详情页，通过block和wx：for循环展示商品信息
+
+```
+<!-- 内容 -->
+<scroll-view style="width: 100%;height: 94vh;" scroll-y="true">
+    <view class="lay_col_sta pad_20">
+        <block wx:for="{{product}}" wx:key="index">
+            <navigator url="../product_detail/product_detail?id={{item._id}}" class="lay_col_cen pad_20 case" style="margin-bottom: 20rpx;font-size: 25rpx;">
+                    <view class="lay_row_sta">
+                        <text>商品名：{{item.name}}</text>
+                    </view>
+                    <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                    <view class="lay_row_spa">
+                        <image src="{{item.img[0]}}" class="pro_img"></image>
+                        <view class="lay_col_spa" style="height: 130rpx;width: 130rpx;margin-left: 400rpx;">
+                            <text style="color: red;font-size: 30rpx;">$:{{item.price}}</text>
+                            <text>类别：{{item.select_classify}}</text>
+                            <text style="color: #888888;">已销售:{{item.sales_volume}}</text>
+                        </view>
+                    </view>
+                    <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                    <view class="lay_row_end" style="margin-left:700rpx">
+                        <text>{{item.time}}</text>
+                    </view>
+            </navigator>
+        </block>
+    </view>
+</scroll-view>
+```
+
+![admin_manage_2](./page_show/admin_manage_2.png)
+
+支持按类型搜索，通过picker组件实现，在后端调用相应云函数wx.cloud.callFunction product_manage
+
+```
+    <view class="lay_row_cen" style="width: 25%;font-size: 25rpx;color: #ffffff;margin-left: 80rpx;">
+        <picker range="{{classify_list}}" range-key="name" bindchange="select_classify">
+            <text style="margin-right: 12rpx;">{{classify}}</text>
+            <van-icon name="arrow-down" />
+        </picker>
+    </view>
+    
+    // 选择分类
+    select_classify(e){
+        let that = this
+        let classify = that.data.classify_list[e.detail.value*1].name
+        that.setData({
+            classify:classify
+        })
+        if(classify=='全部'){
+            that.get_product()
+        }else{
+            wx.showLoading({
+                title: '搜索中',
+            })
+            wx.cloud.callFunction({
+                name:"product_manage",
+                data:{
+                    method:"to_classify",
+                    classify:classify
+                }
+            }).then(res=>{
+                wx.hideLoading()
+                console.log('获取商品',res.result.data)
+                that.setData({
+                    product:res.result.data
+                })
+            })
+        }
+    },
+```
+
+![admin_manage_3](./page_show/admin_manage_3.png)
+
+支持按名称搜索，将名称传给后端，调用云函数wx.cloud.callFunction product_manage
+
+```
+    //搜索商品
+    search(e){
+        let that = this
+        if(e.detail.value){
+            wx.showLoading({
+                title: '搜索中',
+            })
+            wx.cloud.callFunction({
+                name:"product_manage",
+                data:{
+                    method:"search",
+                    name:e.detail.value
+                }
+            }).then(res=>{
+                wx.hideLoading()
+                console.log('获取商品',res.result.data)
+                that.setData({
+                    product:res.result.data
+                })
+            })
+        }else{
+            that.get_product()
+        }
+    },
+```
+
+云函数如下，通过API db.RegExp实现正则化搜索
+
+```
+// 云函数入口函数
+exports.main = async (event, context) => {
+    const wxContext = cloud.getWXContext()
+
+    if(event.method == 'get_product'){
+        return await db.collection('product').orderBy("time","desc").get()
+    }else if(event.method == 'search'){
+        return await db.collection('product').where({
+                name: db.RegExp({
+                regexp: event.name,
+                options: 'i',
+            })
+        }).orderBy("time","desc").get()
+    }else if(event.method == 'to_classify'){
+        return await db.collection('product').where({
+            select_classify:event.classify
+        }).orderBy("time","desc").get()
+    }else if(event.method == 'inc_sales_volume'){
+        return await db.collection('product').doc(event.id).update({
+            data:{
+                sales_volume:_.inc(event.num)
+            }
+        })
+    }
+}
+```
+
+### 11.售后页面
+
+![after1](./page_show/after1.png)
+
+
+
+![after2](./page_show/after2.png)
+
+用户可以查看售后中和已售后两个页面，用户点击联系客服可通过微信联系客服，通过官方open-type=“contact”实现，点击同意售后，产品状态变为已售后
+
+```
+<!-- 内容 -->
+<scroll-view style="width: 100%;height: 94vh;" scroll-y="true">
+    <view class="lay_col_sta pad_20">
+        <block wx:for="{{order}}" wx:key="index">
+            <view class="lay_col_cen pad_20 case order">
+                <view class="lay_row_spa">
+                    <text style="color: #888888;">{{item._id}}</text>
+                    <text style="margin-left: 130rpx;">{{item.type}}</text>
+                </view>
+                <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                <view class="lay_col_cen">
+                    <block wx:for="{{item.goods}}" wx:for-item="goods" wx:key="index">
+                        <view class="lay_row_spa" style="margin-bottom: 10rpx;">
+                            <image src="{{goods.product_img}}" class="goods_img"></image>
+                            <view class="lay_col_cen" style="height: 120rpx;width: 40%;align-items: flex-start;margin-left: 180rpx;">
+                                <text style="padding-top: 20rpx;">{{goods.product_name}}</text>
+                                <text>{{goods.product_specs}}×{{goods.product_num}}</text>
+                            </view>
+                            <text style="color: red;">${{goods.product_price}}</text>
+                        </view>
+                    </block>
+                </view>
+                <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                <view class="lay_row_spa">
+                    <text style="color: #888888;">{{item.time}}</text>
+                    <text style="color: red;">总金额：{{item.all_price}}元</text>
+                    <van-button type="primary" size="mini" open-type="contact">联系客服</van-button>
+                    <van-button type="primary" size="mini" wx:if="{{item.aftermarket_state=='售后中'}}" 
+                    data-id="{{item._id}}" bindtap="agree_aftermarket">同意售后</van-button>
+                </view>
+            </view>
+        </block>
+    </view>
+</scroll-view>
+```
+
+```
+    // 同意售后
+    agree_aftermarket(e){
+        let that = this
+        let id = e.currentTarget.dataset.id
+        wx.showModal({
+            title: '提示',
+            content: '是否同意售后',
+            success (res) {
+                if (res.confirm) {
+                    console.log('用户点击确定')
+                    wx.showLoading({
+                      title: '确认售后中',
+                    })
+                    db.collection('order').doc(id).update({
+                        data:{
+                            aftermarket_state:"已售后"
+                        }
+                    }).then(order=>{
+                        console.log(order)
+                        wx.hideLoading()
+                        that.get_order(that.data.title)
+                    })
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                }
+            }
+        })
+    },
+```
+
 
 
 ## 迭代四
@@ -635,6 +1177,8 @@ bind:close="close_login_case">
 
 - [x] 简单管理端实现，可上传商品，搜索不同类型的商品，并跳转至商品详情页，实现商品管理
 - [x] 实现后台订单管理功能，可以查看所有类型订单，选择发货或者取消订单
+- [x] 简单售后功能，用户可以选择是否售后，并联系客服
+- [x] 简单搜索功能，在商品主页和后台管理均可实现商品的搜索
 
 ### 演示
 
@@ -642,7 +1186,7 @@ bind:close="close_login_case">
 
 二维码查看：
 
-
+![迭代4二维码](D:\1_大三下学习\智能移动开发\kotlin-android-2022\迭代4二维码.jpg)
 
 若二维码失效，请联系开发者，邮箱为2818067461@qq.com
 
@@ -696,9 +1240,14 @@ bind:close="close_login_case">
 
 ## 开发进度表
 
+### 2022/6/14
+
+- 售后功能
+- 商品首页搜索功能
+
 ### 2022/6/13
 
-- 可以实现后台订单管理
+- 实现后台订单管理
 - 可以选择订单，选择物流发出货物
 
 ### 2022/6/5

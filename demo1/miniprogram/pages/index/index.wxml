@@ -1,74 +1,92 @@
 <!--miniprogram/pages/index/index.wxml-->
 <!-- 搜索 -->
-    <van-search
-    value="{{ value }}"
-    placeholder="请输入搜索关键词"
-    shape = "round"
-    show-action
-    bind:search="onSearch"
-    bind:cancel="onCancel"
-    style="background-color: #FF502F;"/>
+<van-search
+value="{{ value }}"
+placeholder="请输入搜索关键词"
+shape = "round"
+show-action
+bind:change="onSearch"
+bind:cancel="onCancel"
+bind:focus="search_case_show"
+bind:blur="search_case_close"
+style="background-color: #FF502F;"/>
+<view class="lay_col_cen" wx:if="{{search_case}}">
+    <view class="lay_col_sta case search_case">
+        <scroll-view style="width: 100%;height: 100%;" scroll-y="true">
+            <view class="lay_col_sta pad_20">
+                <block wx:for="{{search_list}}" wx:key="index">
+                    <view class="lay_row_spa">
+                        <image src="{{item.img[0]}}" class="g_img"></image>
+                        <text>{{item.name}}</text>
+                        <text style="color:red;">${{item.price}}</text>
+                    </view>
+                    <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+</view>
 
-    <!-- 轮播图 -->
-    <view class="swp">
-        <swiper class="swp_a" autoplay="true" circular="true" indicator-dots="true">
-            <block wx:for="{{swaper}}" wx:key="index">
-                <swiper-item>
-                    <image src="{{item.src}}"></image>
-                </swiper-item>
-            </block>
-        </swiper>
+<!-- 轮播图 -->
+<view class="swp">
+    <swiper class="swp_a" autoplay="true" circular="true" indicator-dots="true">
+        <block wx:for="{{swaper}}" wx:key="index">
+            <swiper-item>
+                <image src="{{item.src}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<!-- 板块 -->
+<view class="fun">
+    <view class="fun_title">
+        <van-divider contentPosition="center">今日特惠</van-divider>
     </view>
 
-    <!-- 板块 -->
-    <view class="fun">
-        <view class="fun_title">
-            <van-divider contentPosition="center">今日特惠</van-divider>
+    <view class="fun_a">
+        <view class="fun_left">
+            <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/product/lg_3093356_1590139808_5ec79ba0e289f.jpg"
+            class="fun_left_img"></image>
         </view>
-
-        <view class="fun_a">
-            <view class="fun_left">
-                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/product/lg_3093356_1590139808_5ec79ba0e289f.jpg"
-                class="fun_left_img"></image>
+        <view class="fun_right">
+            <view class="fun_right_a">
+                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/product/lg_3109848_1590975910_5ed45da682e77.jpg"
+                class="fun_right_a_img"></image>
             </view>
-            <view class="fun_right">
-                <view class="fun_right_a">
-                    <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/product/lg_3109848_1590975910_5ed45da682e77.jpg"
-                    class="fun_right_a_img"></image>
-                </view>
-                    
-                <view class="fun_right_b">
-                    <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/product/lg_5075221_1635415871_617a773f6d689.jpg"
-                    class="fun_right_b_img"></image>
-                </view>
+                
+            <view class="fun_right_b">
+                <image src="cloud://cloud1-2gf0p8emae10e4d4.636c-cloud1-2gf0p8emae10e4d4-1311119425/product/lg_5075221_1635415871_617a773f6d689.jpg"
+                class="fun_right_b_img"></image>
             </view>
         </view>
     </view>
+</view>
 
 <!-- 商品列表 -->
 
-    <view class="pro">
-        <van-divider contentPosition="center" style="width: 96%;">商品</van-divider>
-        <view class="pro_all">
-            <block wx:for="{{pro_list}}" wx:key="index">
-                <navigator class="pro_detail" url="../product_detail/product_detail?id={{item._id}}">
-                    <view style="width: 100%;">
-                        <image src="{{item.img[0]}}" class="pro_img"></image>
-                        <view>
-                            <text>{{item.name}}</text>
-                        </view>
-                        <view>
-                            <view>
-                                <text style="color: red;">${{item.price}}</text>
-                                <text style="color: #888;font-size: 25rpx;margin-left: 15rpx;text-decoration: line-through;">{{item.h_price}}</text>
-                            </view>
-                            <van-icon name="cart-circle-o" size="50rpx" color="#FF502F"/>
-                        </view>                    
+<view class="pro">
+    <van-divider contentPosition="center" style="width: 96%;">商品</van-divider>
+    <view class="pro_all">
+        <block wx:for="{{pro_list}}" wx:key="index">
+            <navigator class="pro_detail" url="../product_detail/product_detail?id={{item._id}}">
+                <view style="width: 100%;">
+                    <image src="{{item.img[0]}}" class="pro_img"></image>
+                    <view>
+                        <text>{{item.name}}</text>
                     </view>
-                </navigator>
-            </block>
-        </view>
+                    <view>
+                        <view>
+                            <text style="color: red;">${{item.price}}</text>
+                            <text style="color: #888;font-size: 25rpx;margin-left: 15rpx;text-decoration: line-through;">{{item.h_price}}</text>
+                        </view>
+                        <van-icon name="cart-circle-o" size="50rpx" color="#FF502F"/>
+                    </view>                    
+                </view>
+            </navigator>
+        </block>
     </view>
+</view>
 
 
 

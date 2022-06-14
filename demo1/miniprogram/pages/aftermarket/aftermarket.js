@@ -1,4 +1,4 @@
-// miniprogram/pages/order/order.js
+// miniprogram/pages/aftermarket/aftermarket.js
 var util = require('../../utils/time.js');
 const db = wx.cloud.database()
 Page({
@@ -7,24 +7,25 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title:"已付款",
-        order:[]
+        title:"售后中",
+        order:[],
     },
-    confirm_receipt(e){
+    // 同意售后
+    agree_aftermarket(e){
         let that = this
         let id = e.currentTarget.dataset.id
         wx.showModal({
             title: '提示',
-            content: '是否收货',
+            content: '是否同意售后',
             success (res) {
                 if (res.confirm) {
                     console.log('用户点击确定')
                     wx.showLoading({
-                      title: '确认收货中',
+                      title: '确认售后中',
                     })
                     db.collection('order').doc(id).update({
                         data:{
-                            type:"已完成"
+                            aftermarket_state:"已售后"
                         }
                     }).then(order=>{
                         console.log(order)
@@ -66,7 +67,8 @@ Page({
           title: '获取订单中',
         })
         db.collection('order').where({
-            type:type
+            type:"售后",
+            aftermarket_state:type
         }).orderBy('time','desc').get().then(res=>{
             wx.hideLoading()
             that.setData({
@@ -84,10 +86,7 @@ Page({
      */
     onLoad: function (options) {
         let that = this
-        that.setData({
-            title:options.type
-        })
-        that.get_order(options.type)
+        that.get_order("售后中")
     },
 
     /**

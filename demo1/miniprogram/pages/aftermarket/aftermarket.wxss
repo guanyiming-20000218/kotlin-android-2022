@@ -1,3 +1,4 @@
+/* miniprogram/pages/aftermarket/aftermarket.wxss */
 /* miniprogram/pages/order/order.wxss */
 .head{
     height: 6vh;
@@ -7,7 +8,7 @@
 }
 .select_tile{
     height: 100%;
-    color: #ff502f;
+    color: #b6c754;
     border-bottom: 4rpx solid;
 }
 .order{

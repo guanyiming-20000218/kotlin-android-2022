@@ -15,6 +15,39 @@ Page({
         express_number:"",
         is_submit:false
     },
+    // 更新订单状态
+    update_order_state(e){
+        let that = this
+        let id = e.currentTarget.dataset.id
+        wx.showModal({
+            title: '提示',
+            content: '是否取消订单',
+            success (res) {
+                if (res.confirm) {
+                    console.log('用户点击确定')
+                    that.setData({
+                        order_skip:0
+                    })
+                    wx.showLoading({
+                      title: '取消订单中',
+                    })
+                    wx.cloud.callFunction({
+                        name:"order",
+                        data:{
+                            method:"cancel_order",
+                            id:id,
+                        }
+                    }).then(order=>{
+                        console.log(order)
+                        wx.hideLoading()
+                        that.get_order(that.data.order_state,that.data.order_skip)
+                    })
+                } else if (res.cancel) {
+                console.log('用户点击取消')
+                }
+            }
+        })
+    },
     // 输入信息
     input_msg(e){
         let that = this

@@ -9,12 +9,48 @@ Page({
      */
     data: {
         swaper : [],
-        pro_list : []
+        pro_list : [],
+        search_list: [],
+        search_case:false
+    },
+    // 搜索列表关闭
+    search_case_close(){
+        let that = this
+        that.setData({
+            search_case:false
+        })
+    },
+    // 搜索列表展示
+    search_case_show(){
+        let that = this
+        that.setData({
+            search_case:true
+        })
     },
     // 搜索事件，注意名称和bind:search对应
     onSearch(e){
         let that = this
-        console.log(e.detail)
+        if(e.detail){
+            wx.showLoading({
+                title: '搜索中',
+            })
+            db.collection('product').where({
+                name: db.RegExp({
+                    regexp: e.detail,
+                    options: 'i',
+                })
+            }).get().then(res=>{
+                wx.hideLoading()
+                console.log(res)
+                that.setData({
+                    search_list:res.data
+                })
+            })
+        }else{
+            that.setData({
+                search_list:[],
+            })
+        }
     },
     onCancel(e){
         let that = this

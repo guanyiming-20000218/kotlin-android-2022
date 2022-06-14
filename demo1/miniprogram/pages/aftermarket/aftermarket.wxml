@@ -1,14 +1,11 @@
-<!--miniprogram/pages/order/order.wxml-->
+<!--miniprogram/pages/aftermarket/aftermarket.wxml-->
 <!-- 头部 -->
 <view class="lay_row_spa head">
-    <view class="lay_row_cen {{title=='已付款'?'select_tile':''}}" data-name="已付款" bindtap="select_title">
-        <text>已付款</text>
+    <view class="lay_row_cen {{title=='售后中'?'select_tile':''}}" data-name="售后中" bindtap="select_title">
+        <text>售后中</text>
     </view>
-    <view class="lay_row_cen {{title=='运输中'?'select_tile':''}}" data-name="运输中" bindtap="select_title">
-        <text>运输中</text>
-    </view>
-    <view class="lay_row_cen {{title=='已完成'?'select_tile':''}}" data-name="已完成" bindtap="select_title">
-        <text>已完成</text>
+    <view class="lay_row_cen {{title=='已售后'?'select_tile':''}}" data-name="已售后" bindtap="select_title">
+        <text>已售后</text>
     </view>
 </view>
 
@@ -37,10 +34,13 @@
                 <van-divider style="width: 100%;" custom-style="margin-top:10rpx;margin-bottom:10rpx;"/>
                 <view class="lay_row_spa">
                     <text style="color: #888888;">{{item.time}}</text>
-                    <text style="color: red;margin-left: 120rpx;margin-right: 20rpx;">总金额：{{item.all_price}}元</text>
-                    <van-button type="primary" size="mini" wx:if="{{item.type=='运输中'}}" data-name="{{item._id}}" bindtap="confirm_receipt">确认收货</van-button>
+                    <text style="color: red;">总金额：{{item.all_price}}元</text>
+                    <van-button type="primary" size="mini" open-type="contact">联系客服</van-button>
+                    <van-button type="primary" size="mini" wx:if="{{item.aftermarket_state=='售后中'}}" 
+                    data-id="{{item._id}}" bindtap="agree_aftermarket">同意售后</van-button>
                 </view>
             </view>
         </block>
     </view>
 </scroll-view>
+
