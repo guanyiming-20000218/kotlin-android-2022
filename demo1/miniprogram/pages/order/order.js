@@ -12,7 +12,7 @@ Page({
     },
     confirm_receipt(e){
         let that = this
-        let id = e.currentTarget.dataset.id
+        let id = e.currentTarget.dataset.name
         wx.showModal({
             title: '提示',
             content: '是否收货',
